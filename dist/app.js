@@ -37,8 +37,11 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false })); // handle URL-encoded data
 app.use(bodyParser.json()); // handle JSON-encoded data
 app.use(passport.initialize());
+require("dotenv").config();
+const password = process.env.PASSWORD;
+const username = process.env.USERNAME;
 const jwt = require("jsonwebtoken");
-const mongoose_url = "mongodb+srv://userconnexx:4XbIWfAojr4Rv0dz@cluster0.uuw5l.mongodb.net/";
+const mongoose_url = `mongodb+srv://${username}:${password}@cluster0.uuw5l.mongodb.net/`;
 mongoose
     .connect(mongoose_url)
     .then(() => {
